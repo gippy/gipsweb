@@ -1,4 +1,3 @@
 gips_web:
     resource: "@GipsWebBundle/Resources/config/routing.yml"
     prefix:   /
-

@@ -1,3 +1,18 @@
+login:
+    pattern:   /login
+    defaults:  { _controller: GipsWebBundle:Security:login }
+
+login_check:
+    pattern:   /admin/login_check
+
+logout:
+    pattern:   /admin/logout
+    defaults:  { _controller: GipsWebBundle:Security:logout }
+
+gips_web_admin_homepage:
+    pattern:  /admin
+    defaults: { _controller: GipsWebBundle:Admin:index }
+
 gips_web_homepage:
     pattern:  /
     defaults: { _controller: GipsWebBundle:Default:index }
