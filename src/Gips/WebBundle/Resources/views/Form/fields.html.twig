@@ -1,0 +1,21 @@
+{% block html_editor_widget %}
+	{% spaceless %}
+		{{ block('hidden_widget') }}
+		<div id="{{ id }}_editor">{{ value }}</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var editorID = "{{ id }}_editor";
+				var {{ id }}_editor = ace.edit(editorID);
+				{{ id }}_editor.setTheme("ace/theme/idleFingers");
+				{{ id }}_editor.getSession().setMode("ace/mode/HTML");
+				{{ id }}_editor.getSession().setTabSize(4);
+				{{ id }}_editor.getSession().setUseSoftTabs(true);
+				document.getElementById(editorID).style.fontSize='14px';
+				{{ id }}_editor.getSession().on('change', function(e) {
+					var inputID = "{{ id }}";
+					$( "#"+inputID ).val( $("#" + editorID).text() );
+				});
+			});
+		</script>
+	{% endspaceless %}
+{% endblock %}
