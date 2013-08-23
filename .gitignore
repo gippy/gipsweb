@@ -1,3 +1,6 @@
+# JetBrains
+.idea/*
+
 # Bootstrap
 app/bootstrap*
 
