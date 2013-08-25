@@ -24,7 +24,7 @@ class CVSection
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="position", type="integer")
+	 * @ORM\Column(name="position", type="integer", nullable=true)
 	 */
 	private $position;
 
@@ -34,6 +34,12 @@ class CVSection
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Language", inversedBy="sections")
+	 * @ORM\JoinColumn(name="lang", referencedColumnName="id", nullable=false)
+	 */
+	private $lang = 'cs';
 
     /**
      * @var string
@@ -150,5 +156,60 @@ class CVSection
     public function getPosition()
     {
         return $this->position;
+    }
+
+	/**
+	 * Get slug from section name
+	 *
+	 * @return string
+	 */
+	public function getSlug(){
+		// replace non letter or digits by -
+		$text = preg_replace('~[^\\pL\d]+~u', '-', $this->getName());
+
+		// trim
+		$text = trim($text, '-');
+
+		// transliterate
+		if (function_exists('iconv'))
+		{
+			$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+		}
+
+		// lowercase
+		$text = strtolower($text);
+
+		// remove unwanted characters
+		$text = preg_replace('~[^-\w]+~', '', $text);
+
+		if (empty($text))
+		{
+			return 'n-a';
+		}
+
+		return $text;
+	}
+
+    /**
+     * Set lang
+     *
+     * @param string $lang
+     * @return CVSection
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+    
+        return $this;
+    }
+
+    /**
+     * Get lang
+     *
+     * @return string 
+     */
+    public function getLang()
+    {
+        return $this->lang;
     }
 }

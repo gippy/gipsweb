@@ -13,6 +13,24 @@ gips_web_admin_homepage:
     pattern:  /admin
     defaults: { _controller: GipsWebBundle:Admin:index }
 
+gips_web_add_section:
+    pattern: /admin/add_section
+    defaults: { _controller: GipsWebBundle:Admin:addSection }
+
+gips_web_add_section_submit:
+    pattern: /admin/add_section_submit
+    defaults: { _controller: GipsWebBundle:Admin:addSectionSubmit }
+    methods: [POST]
+
+gips_web_edit_section:
+    pattern: /admin/edit_section/{id}
+    defaults: { _controller: GipsWebBundle:Admin:editSection }
+
+gips_web_edit_section_submit:
+    pattern: /admin/edit_section_submit/{id}
+    defaults: { _controller: GipsWebBundle:Admin:editSectionSubmit }
+    methods: [POST]
+
 gips_web_homepage:
     pattern:  /
     defaults: { _controller: GipsWebBundle:Default:index }

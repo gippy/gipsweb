@@ -1,0 +1,10 @@
+<nav>
+	<ul>
+	{% for section in sections %}
+		<li>
+			<a href="{{ path('gips_web_edit_section', {'id': section.getID() }) }}">{{ section.getName() }}</a>
+		</li>
+	{% endfor %}
+		<li><a href="{{ path('gips_web_add_section') }}">Add new section</a></li>
+	</ul>
+</nav>

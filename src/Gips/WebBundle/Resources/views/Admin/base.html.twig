@@ -2,17 +2,37 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>{% block title %}Welcome!{% endblock %}</title>
+	<title>{% block title %}Gips Administration{% endblock %}</title>
 	{% block stylesheets %}{% endblock %}
 	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	{% stylesheets '@GipsWebBundle/Resources/public/css/style_admin.css' filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
 </head>
 <body>
-{% block body %}{% endblock %}
+{% block body %}
+	{% block header %}
+		<header>
+			{{ render( controller('GipsWebBundle:AdminNavigation:index') ) }}
+		</header>
+	{% endblock %}
+	<div id="main">
+		{% block content %}
+			<div class="content"></div>
+		{% endblock %}
+	</div>
+{% endblock %}
 
 {% block javascripts %}
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="{{ assets('@GipsWebBundle/Resources/public/js/*') }}/ace.js" type="text/javascript" charset="utf-8"></script>
+	{% javascripts
+		'@GipsWebBundle/Resources/public/js/dependencies.js'
+		'@GipsWebBundle/Resources/public/js/main_admin.js'
+		output='js/compiled/main.js'
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 {% endblock %}
 </body>
 </html>
