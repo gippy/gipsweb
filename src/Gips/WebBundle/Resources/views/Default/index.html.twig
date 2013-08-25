@@ -1,1 +1,35 @@
-{% extends "base.html.twig" %}
+{% extends "GipsWebBundle:Default:base.html.twig" %}
+
+{% block header %}
+	<div class="content">
+		<img src="{{ asset('/img/logo.png') }}" alt="Gip's website development" />
+		<h1>Jaroslav Hejlek</h1>
+	</div>
+{% endblock %}
+
+{% block navigation %}
+	<ul>
+		{% for section in sections %}
+			<li><a href="#{{ section.getSlug() }}">{{ section.getName() }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+
+{% block content %}
+
+{% for section in sections %}
+	<section class="{{ loop.index0 is even ? 'even' : 'odd' }}">
+		<header>
+			<h3><a name="{{ section.getSlug() }}">{{ section.getName() }}</a></h3>
+		</header>
+		<div class="content">
+			{{ section.getContent()|raw }}
+		</div>
+	</section>
+{% endfor %}
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

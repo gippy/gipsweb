@@ -2,13 +2,20 @@
 
 namespace Gips\WebBundle\Controller;
 
+use Gips\WebBundle\Entity\Language;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+	/**
+	 * @ParamConverter("language", class="GipsWebBundle:Language")
+	 */
+    public function indexAction(Language $language)
     {
-
-        return $this->render('GipsWebBundle:Default:index.html.twig');
+	    $sections = $language->getSections();
+        return $this->render('GipsWebBundle:Default:index.html.twig', array(
+	        'sections' => $sections
+        ));
     }
 }

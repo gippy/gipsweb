@@ -5,7 +5,7 @@ namespace Gips\WebBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CVSectionType extends AbstractType
+class ProjectType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
@@ -17,6 +17,6 @@ class CVSectionType extends AbstractType
 
 	public function getName()
 	{
-		return 'cvsection';
+		return 'project';
 	}
 }

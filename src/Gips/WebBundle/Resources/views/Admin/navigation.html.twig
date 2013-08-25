@@ -1,10 +1,21 @@
-<nav>
+<nav class="navigation">
 	<ul>
-	{% for section in sections %}
+		<li><a href="{{ path('gips_web_admin_homepage', {'language': 'cs'}) }}">Projekty</a></li>
+	{% for section in czechSections %}
 		<li>
 			<a href="{{ path('gips_web_edit_section', {'id': section.getID() }) }}">{{ section.getName() }}</a>
 		</li>
 	{% endfor %}
-		<li><a href="{{ path('gips_web_add_section') }}">Add new section</a></li>
+		<li><a href="{{ path('gips_web_add_section') }}" class="btn">Add new section</a></li>
+	</ul>
+</nav>
+<nav class="navigation en">
+	<ul>
+		<li><a href="{{ path('gips_web_admin_homepage', {'language': 'en'}) }}">Projects</a></li>
+		{% for section in englishSections %}
+			<li>
+				<a href="{{ path('gips_web_edit_section', {'id': section.getID() }) }}">{{ section.getName() }}</a>
+			</li>
+		{% endfor %}
 	</ul>
 </nav>

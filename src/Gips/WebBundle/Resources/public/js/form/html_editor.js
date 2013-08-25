@@ -11,6 +11,7 @@ setupEditor = function($editorDiv) {
   editor.setTheme("ace/theme/idle_fingers");
   editor.getSession().setTabSize(4);
   editor.getSession().setUseSoftTabs(true);
+  editor.getSession().setUseWrapMode(true);
   return editor.getSession().on('change', function(e) {
     return $("#" + inputID).val(editor.getSession().getDocument().getAllLines().join('\n'));
   });

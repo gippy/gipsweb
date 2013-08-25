@@ -1,0 +1,22 @@
+.navigation
+  background-color: $backgroundDarker
+  width: 100%
+
+  &.en
+    background-color: $backgroundLighter
+
+  ul
+    max-width: $max-width
+    margin: 0 auto
+    text-align: center
+    li
+      display: inline-block
+      padding: 0.5em
+      a
+        display: inline-block
+        font-weight: bold
+        font-size: 1em
+        text-decoration: none
+        padding: 0.5em 1em
+        &.btn
+          @include border-radius(4px)

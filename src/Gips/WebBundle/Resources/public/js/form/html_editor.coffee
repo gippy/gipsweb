@@ -9,6 +9,7 @@ setupEditor = ($editorDiv) ->
   editor.setTheme("ace/theme/idle_fingers")
   editor.getSession().setTabSize(4)
   editor.getSession().setUseSoftTabs(true)
+  editor.getSession().setUseWrapMode(true);
   editor.getSession().on('change', (e) ->
     $( "#"+inputID ).val( editor.getSession().getDocument().getAllLines().join('\n') )
   )

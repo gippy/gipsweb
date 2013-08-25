@@ -40,9 +40,15 @@ class Language
 	 */
 	private $sections;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="Project", mappedBy="lang")
+	 */
+	private $projects;
+
 	public function __construct()
 	{
 		$this->sections = new ArrayCollection();
+		$this->projects = new ArrayCollection();
 	}
 
 	public function __toString(){
@@ -152,5 +158,39 @@ class Language
     public function getSections()
     {
         return $this->sections;
+    }
+
+    /**
+     * Add projects
+     *
+     * @param Project $project
+     * @return Language
+     */
+    public function addProject(Project $project)
+    {
+        $this->projects[] = $project;
+    
+        return $this;
+    }
+
+	/**
+	 * Remove projects
+	 *
+	 * @param Project $project
+	 * @return void Project $project
+	 */
+    public function removeProject(Project $project)
+    {
+        $this->projects->removeElement($project);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
     }
 }

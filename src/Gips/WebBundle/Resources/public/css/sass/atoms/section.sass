@@ -1,0 +1,47 @@
+section
+  background-color: $background
+  padding: $gutter
+  clear: both
+  @include clearfix
+  @include transition('padding 0.2s')
+
+  &.expanded
+    padding-top: 54px+$gutter
+
+  &.even
+    background-color: $backgroundLighter
+  .content
+    margin: 0 auto
+    max-width: $max-width
+    padding-left: $colWidth
+
+    p
+      margin: 0
+      padding: 0 0 0.5em 0
+      max-width: 60em
+
+  header
+    margin: 0 auto
+    max-width: $max-width
+
+  h2,h3,h4,h5,h6
+    margin-top: 0.5em
+    margin-bottom: 0.3em
+
+  table
+    color: $background
+    margin-bottom: 2em
+    th, td
+      background-color: $firm
+      border: 1px solid $backgroundDarker
+      padding: 0.5em
+    td
+      max-width: 60em
+
+  img
+    border: 1px solid $backgroundDarker
+    width: 200px
+    &.right
+      float: right
+      margin-left: 1em
+      margin-right: 1em

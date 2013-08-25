@@ -7,12 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminNavigationController extends Controller {
 	public function indexAction() {
 	    $repository = $this->getDoctrine()
-		    ->getRepository('GipsWebBundle:CVSection');
+		    ->getRepository('GipsWebBundle:Language');
 
-		$sections = $repository->findAll();
+		$czechSections = $repository->findOneById('cs')->getSections();
+		$englishSections = $repository->findOneById('en')->getSections();
 
         return $this->render('GipsWebBundle:Admin:navigation.html.twig', array(
-	        'sections' => $sections
+	        'czechSections' => $czechSections,
+	        'englishSections' => $englishSections,
         ));
     }
 }

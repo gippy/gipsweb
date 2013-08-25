@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>{% block title %}Gip's Homepage{% endblock %}</title>
+	{% block stylesheets %}{% endblock %}
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	{% stylesheets '@GipsWebBundle/Resources/public/css/style.css' filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+</head>
+<body>
+{% block body %}
+	<header id="header">{% block header %}{% endblock %}</header>
+	<nav id="navigation">{% block navigation %}{% endblock %}</nav>
+	<div id="main">{% block content %}{% endblock %}</div>
+	<footer>{% block footer %}{% endblock %}</footer>
+{% endblock %}
+
+{% block javascripts %}
+	{% javascripts
+		'@GipsWebBundle/Resources/public/js/dependencies.js'
+		'@GipsWebBundle/Resources/public/js/main.js'
+		output='js/compiled/main.js'
+	%}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+</body>
+</html>

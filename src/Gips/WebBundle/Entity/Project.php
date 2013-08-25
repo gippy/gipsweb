@@ -5,12 +5,12 @@ namespace Gips\WebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CVSection
+ * Project
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class CVSection
+class Project
 {
     /**
      * @var integer
@@ -21,13 +21,6 @@ class CVSection
      */
     private $id;
 
-	/**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="position", type="integer", nullable=true)
-	 */
-	private $position;
-
     /**
      * @var string
      *
@@ -36,7 +29,7 @@ class CVSection
     private $name;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Language", inversedBy="sections")
+	 * @ORM\ManyToOne(targetEntity="Language", inversedBy="projects")
 	 * @ORM\JoinColumn(name="lang", referencedColumnName="id", nullable=false)
 	 */
 	private $lang = 'cs';
@@ -83,29 +76,6 @@ class CVSection
     }
 
     /**
-     * Set color
-     *
-     * @param string $color
-     * @return CVSection
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-    
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string 
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
      * Set content
      *
      * @param string $content
@@ -127,61 +97,6 @@ class CVSection
     {
         return $this->content;
     }
-
-    /**
-     * Set position
-     *
-     * @param integer $position
-     * @return CVSection
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-    
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return integer 
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-	/**
-	 * Get slug from section name
-	 *
-	 * @return string
-	 */
-	public function getSlug(){
-		// replace non letter or digits by -
-		$text = preg_replace('~[^\\pL\d]+~u', '-', $this->getName());
-
-		// trim
-		$text = trim($text, '-');
-
-		// transliterate
-		if (function_exists('iconv'))
-		{
-			$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-		}
-
-		// lowercase
-		$text = strtolower($text);
-
-		// remove unwanted characters
-		$text = preg_replace('~[^-\w]+~', '', $text);
-
-		if (empty($text))
-		{
-			return 'n-a';
-		}
-
-		return $text;
-	}
 
     /**
      * Set lang

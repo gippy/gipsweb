@@ -10,8 +10,8 @@ logout:
     defaults:  { _controller: GipsWebBundle:Security:logout }
 
 gips_web_admin_homepage:
-    pattern:  /admin
-    defaults: { _controller: GipsWebBundle:Admin:index }
+    pattern:  /admin/{language}
+    defaults: { _controller: GipsWebBundle:Admin:index, language: 'cs'  }
 
 gips_web_add_section:
     pattern: /admin/add_section
@@ -31,6 +31,24 @@ gips_web_edit_section_submit:
     defaults: { _controller: GipsWebBundle:Admin:editSectionSubmit }
     methods: [POST]
 
+gips_web_add_project:
+    pattern: /admin/add_project
+    defaults: { _controller: GipsWebBundle:Admin:addProject }
+
+gips_web_add_project_submit:
+    pattern: /admin/add_project_submit
+    defaults: { _controller: GipsWebBundle:Admin:addProjectSubmit }
+    methods: [POST]
+
+gips_web_edit_project:
+    pattern: /admin/edit_project/{id}
+    defaults: { _controller: GipsWebBundle:Admin:editProject }
+
+gips_web_edit_project_submit:
+    pattern: /admin/edit_project_submit/{id}
+    defaults: { _controller: GipsWebBundle:Admin:editProjectSubmit }
+    methods: [POST]
+
 gips_web_homepage:
-    pattern:  /
-    defaults: { _controller: GipsWebBundle:Default:index }
+    pattern:  /{language}
+    defaults: { _controller: GipsWebBundle:Default:index, language: 'cs' }
