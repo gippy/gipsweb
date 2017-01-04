@@ -1,3 +1,9 @@
+Rozpracovany projekt me domovske stranky v Symfony
+
+ ||
+ ||
+ ||
+
 Symfony Standard Edition
 ========================
 
